@@ -19,7 +19,7 @@ public class bomb extends Actor
     public void act() 
     {
         // Add your action code here.
-        if(temp%10 == 0){
+        if(temp%16 == 0){
             if(getImage() == Image1){
                 setImage(Image2);
             }else{

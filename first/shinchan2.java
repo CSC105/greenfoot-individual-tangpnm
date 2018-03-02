@@ -31,5 +31,5 @@ public class shinchan2 extends Actor
             }
         }
         temp++;
-    }    
+    }
 }

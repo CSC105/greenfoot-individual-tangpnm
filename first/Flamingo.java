@@ -44,12 +44,11 @@ public class Flamingo extends Actor
     GreenfootImage image34 = new GreenfootImage("Flamingo34.png");
     GreenfootImage image35 = new GreenfootImage("Flamingo35.png");
     GreenfootImage image36 = new GreenfootImage("Flamingo36.png");
-    int score;
     /**
      * Act - do whatever the Flamingo wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-
+    
     public void movement()
     {
         if(getY() < 260){
@@ -77,23 +76,33 @@ public class Flamingo extends Actor
     {
         Actor actor = getOneObjectAtOffset(0, 0, clss);
         if(actor != null) {
-            getWorld().removeObject(actor);
-            score++;
+            World myWorld = getWorld();
+            myWorld.removeObject(actor);
+            Greenfoot.playSound("bomb.wav");
+            dd map = (dd)myWorld;
+            Score score = map.getScore();
+            score.addScore();
+            //Greenfoot.playSound("...");
         }
-    }
-    /*public void eatted(Class clsses)
-    {
-        Actor actor = getOneObjectAtOffset(0, 0, clsses);
-        if(actor != null) {
-            getWorld().removeObject(actor);
-            score++;
-        }
-    }*/
+    } 
     
+    public void over(Class clss)
+    {
+        Actor actor = getOneObjectAtOffset(0, 0, clss);
+        if(actor != null) {
+            World myWorld = getWorld();
+            myWorld.removeObject(actor);
+            Greenfoot.setWorld(new End());
+            
+        }
+    } 
     public void act() 
     {
        movement();
        eat(bomb.class);
+       eat(bomb1.class);
+       over(shinchan1.class);
+       over(shinchan2.class);
        if (getImage() == image1)
        {
            setImage(image2);
